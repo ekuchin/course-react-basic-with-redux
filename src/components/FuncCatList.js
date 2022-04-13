@@ -1,15 +1,16 @@
 import FuncCat from "./FuncCat"
 import catData from '../data/catsData';
 import { useEffect, useState } from "react";
+import FuncCatEdit from "./FuncCatEdit";
 
 function FuncCatList (props){
     const [cats, setCats] = useState(catData)
     const [isLoading, setLoading] = useState(true);
     
-    const addCat = () =>{
+    const addCat = (newCat) =>{
 
         //Задаем кота константой
-        const newCat =  {name:"Мурка", breed: "Беспородная", weight:4, isAngry:false}
+        //const newCat =  {name:"Мурка", breed: "Беспородная", weight:4, isAngry:false}
 
         //Используем id последнего кота в списке          
         const newId=cats[cats.length-1].id+1
@@ -39,11 +40,7 @@ function FuncCatList (props){
                 : catArray
             }
             <br/>
-            <button 
-                className="btn btn-primary"
-                onClick={addCat}
-            >Добавить кота
-            </button>
+            <FuncCatEdit addCat={addCat}/>
         </div>
     )
 }

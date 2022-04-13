@@ -44,6 +44,11 @@
   color: #fff;
 }
 
+form > input, form > label > select, form > label > input  {
+  padding: .5rem;
+  margin: 1rem;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

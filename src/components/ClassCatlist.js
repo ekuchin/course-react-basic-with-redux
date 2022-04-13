@@ -1,6 +1,7 @@
 import React from "react";
 import ClassCat from "./ClassCat"
 import catData from "../data/catsData.js"
+import ClassCatEdit from "./ClassCatEdit"
 
 class ClassCatList extends React.Component{
     
@@ -14,10 +15,10 @@ class ClassCatList extends React.Component{
         this.removeCat = this.removeCat.bind(this)
     }
     
-    addCat(){
+    addCat(newCat){
 
         //Задаем кота константой
-        const newCat =  {name:"Мурка", breed: "Беспородная", weight:4, isAngry:false}
+        //const newCat =  {name:"Мурка", breed: "Беспородная", weight:4, isAngry:false}
 
         //Используем id последнего кота в списке
         this.setState(prevState => {           
@@ -55,11 +56,7 @@ class ClassCatList extends React.Component{
                     : catArray
                 }
                 <br/>
-                <button 
-                    className="btn btn-primary"
-                    onClick={this.addCat}
-                >Добавить кота
-                </button>
+                <ClassCatEdit addCat={this.addCat}/>
             </div>
         )
     }
