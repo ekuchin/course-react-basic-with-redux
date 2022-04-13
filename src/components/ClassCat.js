@@ -32,6 +32,12 @@ class ClassCat extends React.Component{
                     onClick={this.handleClick}
                 >Погладь кота
                 </button>
+                <br/><br/>
+                <button 
+                    className="btn btn-cancel"
+                    onClick={()=>this.props.removeCat(cat.id)}
+                >Удалить кота
+                </button>
             </div>
         )
     }

@@ -23,6 +23,12 @@ function FuncCat (props){
                     onClick={()=>setLikeCount(likeCount+1)}
                 >Погладь кота
                 </button>
+                <br/><br/>
+                <button 
+                    className="btn btn-cancel"
+                    onClick={()=>props.removeCat(cat.id)}
+                >Удалить кота
+                </button>
         </div>
     )
 }
