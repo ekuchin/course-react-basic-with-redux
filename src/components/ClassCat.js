@@ -26,6 +26,7 @@ class ClassCat extends React.Component{
                 <p>Порода: {cat.breed}</p>
                 <p>Вес: {cat.weight}кг.</p>
                 <p>Состояние: {cat.isAngry ? "Сердит" :"Дружелюбен"}</p>
+                {!cat.isAngry && <p>Классовый кот желает счастья Вам :)</p>}
                 <p>Кот поглажен {this.state.likeCount} раз</p>
                 <button 
                     className="btn btn-primary"

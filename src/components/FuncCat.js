@@ -16,6 +16,7 @@ function FuncCat (props){
                 <p>Порода: {cat.breed}</p>
                 <p>Вес: {cat.weight}кг.</p>
                 <p>Состояние: {cat.isAngry ? "Сердит" :"Дружелюбен"}</p>
+                {!cat.isAngry && <p>Функциональный кот желает счастья Вам :)</p>}
                 <p>Поглажен {likeCount} раз</p>
 
                 <button 

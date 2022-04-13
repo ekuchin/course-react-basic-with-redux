@@ -6,7 +6,10 @@ class ClassCatList extends React.Component{
     
     constructor(){
         super()
-        this.state={ cats: catData}
+        this.state={
+            cats: catData,
+            isLoading:true
+        }
         this.addCat = this.addCat.bind(this)
         this.removeCat = this.removeCat.bind(this)
     }
@@ -32,6 +35,14 @@ class ClassCatList extends React.Component{
         })
     }
     
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                isLoading: false
+            })
+        }, 1500)
+    }
+
     render(){
         
         const catArray = this.state.cats.map((cat) => <ClassCat key={cat.id} cat={cat} removeCat={this.removeCat}/>)
@@ -39,7 +50,10 @@ class ClassCatList extends React.Component{
         return(
             <div>
                 <h1>Это список классовых котов</h1>
-                {catArray}
+                {this.state.isLoading 
+                    ? <h3>Подождите 1,5 сек, котики загружаются..</h3>
+                    : catArray
+                }
                 <br/>
                 <button 
                     className="btn btn-primary"

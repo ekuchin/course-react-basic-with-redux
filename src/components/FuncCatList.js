@@ -1,9 +1,10 @@
 import FuncCat from "./FuncCat"
 import catData from '../data/catsData';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function FuncCatList (props){
     const [cats, setCats] = useState(catData)
+    const [isLoading, setLoading] = useState(true);
     
     const addCat = () =>{
 
@@ -24,10 +25,19 @@ function FuncCatList (props){
     }
     const catArray = cats.map((cat) => <FuncCat key={cat.id} cat={cat} removeCat={removeCat}/>)
 
+    useEffect(()=>{
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
+    },[])
+
     return(
         <div>
             <h1>Это список функциональных котов</h1>
-            {catArray}
+            {isLoading 
+                ? <h3>Подождите 1 сек, котики загружаются..</h3>
+                : catArray
+            }
             <br/>
             <button 
                 className="btn btn-primary"
