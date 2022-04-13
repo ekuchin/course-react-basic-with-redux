@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState } from "react"
+import {connect} from "react-redux"
+import {remove} from "../store/store.js"
 
 function FuncCat (props){
 
@@ -27,10 +29,10 @@ function FuncCat (props){
                 <br/><br/>
                 <button 
                     className="btn btn-cancel"
-                    onClick={()=>props.removeCat(cat.id)}
+                    onClick={()=>props.remove(cat.id)}
                 >Удалить кота
                 </button>
         </div>
     )
 }
-export default FuncCat; 
+export default connect(state => ({}), {remove})(FuncCat) 

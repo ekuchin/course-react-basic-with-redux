@@ -1,30 +1,15 @@
 import FuncCat from "./FuncCat"
-import catData from '../data/catsData';
 import { useEffect, useState } from "react";
 import FuncCatEdit from "./FuncCatEdit";
 
+import {connect} from "react-redux"
+
 function FuncCatList (props){
-    const [cats, setCats] = useState(catData)
+    //const [cats, setCats] = useState(catData)
+    const cats=props.cats
     const [isLoading, setLoading] = useState(true);
     
-    const addCat = (newCat) =>{
-
-        //Задаем кота константой
-        //const newCat =  {name:"Мурка", breed: "Беспородная", weight:4, isAngry:false}
-
-        //Используем id последнего кота в списке          
-        const newId=cats[cats.length-1].id+1
-        const idCat = {...newCat, id:newId}
-        const updatedCats = [...cats, idCat]
-        setCats(updatedCats)
-    }
-
-    const removeCat = (id)=>{
-
-            const updatedCats = cats.filter(cat => cat.id !== id)
-            setCats(updatedCats) 
-    }
-    const catArray = cats.map((cat) => <FuncCat key={cat.id} cat={cat} removeCat={removeCat}/>)
+    const catArray = cats.map((cat) => <FuncCat key={cat.id} cat={cat}/>)
 
     useEffect(()=>{
         setTimeout(() => {
@@ -40,8 +25,8 @@ function FuncCatList (props){
                 : catArray
             }
             <br/>
-            <FuncCatEdit addCat={addCat}/>
+            <FuncCatEdit/>
         </div>
     )
 }
-export default FuncCatList;
+export default connect(state => ({cats: state}), {})(FuncCatList) 

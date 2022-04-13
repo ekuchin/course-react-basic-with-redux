@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux"
+import {add} from "../store/store.js"
 
 class ClassCatEdit extends React.Component{   
     constructor(props) {
@@ -20,7 +22,7 @@ class ClassCatEdit extends React.Component{
     }
 
       handleSubmit(event) {
-        this.props.addCat(this.state)
+        this.props.add(this.state)
         event.preventDefault();
       }
 
@@ -102,4 +104,4 @@ class ClassCatEdit extends React.Component{
         )
     }
 }
-export default ClassCatEdit; 
+export default connect(state => ({}), {add})(ClassCatEdit) 

@@ -1,11 +1,13 @@
 import { useState } from "react"
+import {connect} from "react-redux"
+import {add} from "../store/store.js"
 
 function FuncCatEdit(props){
 
     const [newCat, setNewCat] = useState({name:"Эдуард", breed: "Британец", weight:5, isAngry:false}) 
 
     const handleSubmit = (event)=> {
-        props.addCat(newCat)
+        props.add(newCat)
         event.preventDefault();        
     }
 
@@ -82,4 +84,4 @@ function FuncCatEdit(props){
       </form>
     )
 }
-export default FuncCatEdit 
+export default connect(state => ({}), {add})(FuncCatEdit) 

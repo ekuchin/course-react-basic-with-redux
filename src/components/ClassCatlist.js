@@ -1,41 +1,18 @@
 import React from "react";
 import ClassCat from "./ClassCat"
-import catData from "../data/catsData.js"
 import ClassCatEdit from "./ClassCatEdit"
+
+import {connect} from "react-redux"
 
 class ClassCatList extends React.Component{
     
     constructor(){
         super()
         this.state={
-            cats: catData,
             isLoading:true
         }
-        this.addCat = this.addCat.bind(this)
-        this.removeCat = this.removeCat.bind(this)
     }
-    
-    addCat(newCat){
-
-        //Задаем кота константой
-        //const newCat =  {name:"Мурка", breed: "Беспородная", weight:4, isAngry:false}
-
-        //Используем id последнего кота в списке
-        this.setState(prevState => {           
-            const newId=prevState.cats[prevState.cats.length-1].id+1
-            const idCat = {...newCat, id:newId}
-            const updatedCats = [...prevState.cats, idCat]
-            return {cats:updatedCats}
-        })
-    }
-
-    removeCat(id){
-        this.setState(prevState => {          
-            const updatedCats = prevState.cats.filter(cat => cat.id !== id)
-            return {cats:updatedCats}
-        })
-    }
-    
+       
     componentDidMount() {
         setTimeout(() => {
             this.setState({
@@ -44,9 +21,8 @@ class ClassCatList extends React.Component{
         }, 1500)
     }
 
-    render(){
-        
-        const catArray = this.state.cats.map((cat) => <ClassCat key={cat.id} cat={cat} removeCat={this.removeCat}/>)
+    render(){       
+        const catArray = this.props.cats.map((cat) => <ClassCat key={cat.id} cat={cat}/>)
 
         return(
             <div>
@@ -56,10 +32,10 @@ class ClassCatList extends React.Component{
                     : catArray
                 }
                 <br/>
-                <ClassCatEdit addCat={this.addCat}/>
+                <ClassCatEdit/>
             </div>
         )
     }
 
 }
-export default ClassCatList; 
+export default connect(state => ({cats: state}), {})(ClassCatList) 

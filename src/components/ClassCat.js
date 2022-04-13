@@ -1,4 +1,6 @@
 import React from "react";
+import {connect} from "react-redux"
+import {remove} from "../store/store.js"
 
 class ClassCat extends React.Component{
     constructor(){
@@ -11,8 +13,8 @@ class ClassCat extends React.Component{
         this.setState(prevState => ({
             likeCount: prevState.likeCount + 1
         }));  }
-    render(){
-        
+    
+    render(){   
         const cat = this.props.cat       
 
         const catStyle = {
@@ -36,7 +38,7 @@ class ClassCat extends React.Component{
                 <br/><br/>
                 <button 
                     className="btn btn-cancel"
-                    onClick={()=>this.props.removeCat(cat.id)}
+                    onClick={()=>this.props.remove(cat.id)}
                 >Удалить кота
                 </button>
             </div>
@@ -44,4 +46,4 @@ class ClassCat extends React.Component{
     }
 
 }
-export default ClassCat; 
+export default connect(state => ({}), {remove})(ClassCat) 
