@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 function FuncCat (props){
 
     const cat = props.cat
-
+    const [likeCount, setLikeCount] = useState(0);
+    
     const catStyle = {
         color: 'blue',
         backgroundColor:'yellow'
@@ -13,7 +16,13 @@ function FuncCat (props){
                 <p>Порода: {cat.breed}</p>
                 <p>Вес: {cat.weight}кг.</p>
                 <p>Состояние: {cat.isAngry ? "Сердит" :"Дружелюбен"}</p>
-                <button className="btn btn-primary">Погладь кота</button>
+                <p>Поглажен {likeCount} раз</p>
+
+                <button 
+                    className="btn btn-primary"
+                    onClick={()=>setLikeCount(likeCount+1)}
+                >Погладь кота
+                </button>
         </div>
     )
 }

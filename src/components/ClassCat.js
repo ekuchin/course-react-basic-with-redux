@@ -1,7 +1,16 @@
 import React from "react";
 
 class ClassCat extends React.Component{
+    constructor(){
+        super()
+        this.state={ likeCount: 0}
+        this.handleClick = this.handleClick.bind(this);
+    }
 
+    handleClick() {   
+        this.setState(prevState => ({
+            likeCount: prevState.likeCount + 1
+        }));  }
     render(){
         
         const cat = this.props.cat       
@@ -17,7 +26,12 @@ class ClassCat extends React.Component{
                 <p>Порода: {cat.breed}</p>
                 <p>Вес: {cat.weight}кг.</p>
                 <p>Состояние: {cat.isAngry ? "Сердит" :"Дружелюбен"}</p>
-                <button className="btn btn-primary">Погладь кота</button>
+                <p>Кот поглажен {this.state.likeCount} раз</p>
+                <button 
+                    className="btn btn-primary"
+                    onClick={this.handleClick}
+                >Погладь кота
+                </button>
             </div>
         )
     }
