@@ -1,8 +1,11 @@
 import FuncCat from "./FuncCat"
+import catData from '../data/catsData';
+import { useState } from "react";
 
 function FuncCatList (props){
-
-    const catArray = props.cats.map((cat) => <FuncCat key={cat.id} cat={cat}/>)
+    const [cats, setCats] = useState(catData)
+    
+    const catArray = cats.map((cat) => <FuncCat key={cat.id} cat={cat}/>)
 
     return(
         <div>

@@ -1,11 +1,16 @@
 import React from "react";
 import ClassCat from "./ClassCat"
+import catData from "../data/catsData.js"
 
 class ClassCatList extends React.Component{
-
+    
+    constructor(){
+        super()
+        this.state={ cats: catData}
+    }
     render(){
         
-        const catArray = this.props.cats.map((cat) => <ClassCat key={cat.id} cat={cat}/>)
+        const catArray = this.state.cats.map((cat) => <ClassCat key={cat.id} cat={cat}/>)
 
         return(
             <div>
