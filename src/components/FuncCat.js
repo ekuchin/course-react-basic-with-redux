@@ -1,7 +1,6 @@
-function FuncCat (){
+function FuncCat (props){
 
-    const cat = {name:"Мурзик", breed:"Манул", weight:10, isAngry:false}
-    const logo = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Manoel.jpg/275px-Manoel.jpg"
+    const cat = props.cat
 
     const catStyle = {
         color: 'blue',
@@ -11,7 +10,6 @@ function FuncCat (){
     return(
         <div>
                 <h1 style={catStyle}>Кот {cat.name}</h1>
-                <img src={logo}/>
                 <p>Порода: {cat.breed}</p>
                 <p>Вес: {cat.weight}кг.</p>
                 <p>Состояние: {cat.isAngry ? "Сердит" :"Дружелюбен"}</p>
